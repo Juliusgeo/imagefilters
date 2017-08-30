@@ -1,5 +1,6 @@
 from PIL import Image, ImageFilter, ImageChops, ImageOps, ImageDraw, ImageFont
 import numpy as np
+import math
 impath="wall.JPG"
 im=Image.open(impath)
 w, h = im.size
@@ -14,14 +15,17 @@ def medianDeNoise(imarray,w,h):
             imarray[i,n]=np.median(neighborsmatrix[0][:][:], axis=0)
     return imarray
 def saturationIncrease(imarray, amt, w, h):
+    #python implementation of http://alienryderflex.com/saturation.html
+    r =.299
+    g =.587
+    b =.114
     for i in range(1,h-1):
         for n in range(1,w-1):
-            hichannel=np.argmax(imarray[i,n])
-            if(imarray[i,n][hichannel]+amt<255):
-                imarray[i,n][hichannel]+=amt
-            else:
-                imarray[i,n][hichannel]=255
+            rr,gg,bb=imarray[i,n]
+            p=math.sqrt((rr**2*r)+(gg**2*g)+(gg**2*g))
+            imarray[i,n]=[p+(rr-p)*amt,p+(gg-p)*amt,p+(bb-p)*amt]
+            imarray[i,n]=np.clip(imarray[i,n],0,255)
     return imarray
 #image = Image.fromarray(medianDeNoise(imarray,w,h), 'RGB')
-image = Image.fromarray(saturationIncrease(imarray,40,w,h), 'RGB')
+image = Image.fromarray(saturationIncrease(imarray,1,w,h), 'RGB')
 image.show()
