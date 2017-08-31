@@ -2,12 +2,12 @@ from PIL import Image, ImageFilter, ImageChops, ImageOps, ImageDraw, ImageFont
 import numpy as np
 import math
 from medianDeNoise import medianDeNoise
-impath="wall.JPG"
+impath="Lenna.png"
 im=Image.open(impath)
 w, h = im.size
-im=ImageOps.fit(im, [w//16,h//16], Image.NEAREST)
-w, h = im.size
-imarray = np.asarray(im).copy().astype(int).reshape(h,w,3)
+#im=ImageOps.fit(im, [w//4,h//4], Image.NEAREST)
+#w, h = im.size
+imarray = np.asarray(im).copy().astype(np.uint8).reshape(h,w,3)
 def saturationIncrease(imarray, amt, w, h):
     #python implementation of http://alienryderflex.com/saturation.html
     r =.299
