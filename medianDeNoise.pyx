@@ -2,6 +2,7 @@ import numpy as np
 cimport numpy as np
 cimport cython
 @cython.boundscheck(False) # turn off bounds-checking for entire function
+
 def fassum(np.uint8_t[:] arr):
     cdef np.uint16_t sum
     sum=0

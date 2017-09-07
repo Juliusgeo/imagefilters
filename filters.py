@@ -2,6 +2,8 @@ from PIL import Image, ImageFilter, ImageChops, ImageOps, ImageDraw, ImageFont
 import numpy as np
 import math
 from medianDeNoise import medianDeNoise
+from sharpen import sharpen
+
 impath="Lenna.png"
 im=Image.open(impath)
 w, h = im.size
@@ -19,6 +21,7 @@ def saturationIncrease(imarray, amt, w, h):
             p=math.sqrt((rr**2*r)+(gg**2*g)+(gg**2*g))
             imarray[i,n]=np.clip([p+(rr-p)*amt,p+(gg-p)*amt,p+(bb-p)*amt],0,255)
     return imarray
-image = Image.fromarray(medianDeNoise(imarray,w,h), 'RGB')
+#image = Image.fromarray(medianDeNoise(imarray,w,h), 'RGB')
 #image = Image.fromarray(saturationIncrease(imarray,3,w,h), 'RGB')
+image = Image.fromarray(sharpen(imarray,w,h), 'RGB')
 image.show()
