@@ -22,7 +22,7 @@ def medianDeNoise(np.uint8_t[:,:,:] imarray, int w, int h):
     cdef np.uint8_t[:,:] neimat
     neimat=np.empty([8,3],dtype=np.uint8)
     cdef np.uint8_t[:] mean
-    cdef int i,n
+    cdef Py_ssize_t i,n
     for i in range(1,h-1):
         for n in range(1,w-1):
             neimat[0]=imarray[i-1,n-1,:]

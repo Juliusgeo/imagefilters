@@ -4,7 +4,7 @@ import math
 from medianDeNoise import medianDeNoise
 from sharpen import sharpen
 
-impath="Lenna.png"
+impath="/Users/juliuspark/Desktop/cat/a.jpg"
 im=Image.open(impath)
 w, h = im.size
 #im=ImageOps.fit(im, [w//4,h//4], Image.NEAREST)

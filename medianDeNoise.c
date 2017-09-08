@@ -3001,8 +3001,8 @@ static PyObject *__pyx_pw_13medianDeNoise_5medianDeNoise(PyObject *__pyx_self, P
 static PyObject *__pyx_pf_13medianDeNoise_4medianDeNoise(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_imarray, int __pyx_v_w, int __pyx_v_h) {
   __Pyx_memviewslice __pyx_v_neimat = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_mean = { 0, 0, { 0 }, { 0 }, { 0 } };
-  int __pyx_v_i;
-  int __pyx_v_n;
+  Py_ssize_t __pyx_v_i;
+  Py_ssize_t __pyx_v_n;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3012,9 +3012,9 @@ static PyObject *__pyx_pf_13medianDeNoise_4medianDeNoise(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_5 = NULL;
   __Pyx_memviewslice __pyx_t_6 = { 0, 0, { 0 }, { 0 }, { 0 } };
   long __pyx_t_7;
-  int __pyx_t_8;
+  Py_ssize_t __pyx_t_8;
   long __pyx_t_9;
-  int __pyx_t_10;
+  Py_ssize_t __pyx_t_10;
   __Pyx_memviewslice __pyx_t_11 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_t_12 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_t_13 = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -3041,7 +3041,7 @@ static PyObject *__pyx_pf_13medianDeNoise_4medianDeNoise(CYTHON_UNUSED PyObject 
  *     cdef np.uint8_t[:,:] neimat
  *     neimat=np.empty([8,3],dtype=np.uint8)             # <<<<<<<<<<<<<<
  *     cdef np.uint8_t[:] mean
- *     cdef int i,n
+ *     cdef Py_ssize_t i,n
  */
   __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3084,7 +3084,7 @@ static PyObject *__pyx_pf_13medianDeNoise_4medianDeNoise(CYTHON_UNUSED PyObject 
 
   /* "medianDeNoise.pyx":26
  *     cdef np.uint8_t[:] mean
- *     cdef int i,n
+ *     cdef Py_ssize_t i,n
  *     for i in range(1,h-1):             # <<<<<<<<<<<<<<
  *         for n in range(1,w-1):
  *             neimat[0]=imarray[i-1,n-1,:]
@@ -3094,7 +3094,7 @@ static PyObject *__pyx_pf_13medianDeNoise_4medianDeNoise(CYTHON_UNUSED PyObject 
     __pyx_v_i = __pyx_t_8;
 
     /* "medianDeNoise.pyx":27
- *     cdef int i,n
+ *     cdef Py_ssize_t i,n
  *     for i in range(1,h-1):
  *         for n in range(1,w-1):             # <<<<<<<<<<<<<<
  *             neimat[0]=imarray[i-1,n-1,:]
