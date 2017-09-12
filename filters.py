@@ -3,6 +3,7 @@ import numpy as np
 import math
 from medianDeNoise import medianDeNoise
 from sharpen import sharpen
+from kernelConvolve import kernelConvolve
 
 impath="/Users/juliuspark/Desktop/cat/a.jpg"
 im=Image.open(impath)
@@ -23,5 +24,10 @@ def saturationIncrease(imarray, amt, w, h):
     return imarray
 #image = Image.fromarray(medianDeNoise(imarray,w,h), 'RGB')
 #image = Image.fromarray(saturationIncrease(imarray,3,w,h), 'RGB')
-image = Image.fromarray(sharpen(imarray,w,h), 'RGB')
+#image = Image.fromarray(sharpen(imarray,w,h), 'RGB')
+kernel=np.array([[-1,-1,-1],
+[-1,9,-1],
+[-1,-1,-1]])
+image = Image.fromarray(kernelConvolve(imarray, kernel, "reflect"), 'RGB')
+
 image.show()
