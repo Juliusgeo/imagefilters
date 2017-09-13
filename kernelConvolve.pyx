@@ -14,30 +14,34 @@ def accumulate(arr1, arr2):
     if(sum>255):
         sum=255
     elif(sum<0):
-        print(sum)
         sum=0
     return sum
 
 
 def kernelConvolve(array, kernel):
     kernsize=kernel.shape
-    array=np.array(array).astype(np.uint8)
+    newarray=np.array(array).astype(np.uint8)
     a=np.empty(kernsize).astype(np.uint16)
     half=kernsize[0]//2
     cdef Py_ssize_t i,n
+
     if(len(array.shape)==2):
         for i in range(half,array.shape[0]-half):
             #if(n>1): break
             for n in range(half,array.shape[1]-half):
                 a=array[i-half:i+half+1,n-half:n+half+1]
                 #print(a)
-                array[i,n]=accumulate(kernel, a)
+                newarray[i,n]=accumulate(kernel, a)
                 #print(array[i,n])
 
     if(len(array.shape)==3):
         for i in range(half,array.shape[0]-half):
+            #if(n>1): break
             for n in range(half,array.shape[1]-half):
-                a=array[i-half:i+half,n-half:n+half]
-                array[i,n]=accumulate(kernel, a)
+                a=array[i-half:i+half+1,n-half:n+half+1]
+                #print(a, a[:,:,0])
+                newarray[i,n][0]=accumulate(kernel, a[:,0])
+                newarray[i,n][1]=accumulate(kernel, a[:,1])
+                newarray[i,n][2]=accumulate(kernel, a[:,2])
     #print(accumulate(np.array([[-1,-1,-1],[-1,9,-1],[-1,-1,-1]]), np.array([[-1,-1,-1],[-1,9,-1],[-1,-1,-1]])))
-    return np.array(np.clip(array,0,255)).astype(np.uint8)
+    return np.array(np.clip(newarray,0,255)).astype(np.uint8)
