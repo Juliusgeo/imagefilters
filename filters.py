@@ -26,7 +26,7 @@ def saturationIncrease(imarray, amt, w, h):
 #image = Image.fromarray(saturationIncrease(imarray,3,w,h), 'RGB')
 #image = Image.fromarray(sharpen(imarray,w,h), 'RGB')
 kernel=np.array([[-1,-1,-1],
-[-1,10,-1],
+[-1,9,-1],
 [-1,-1,-1]])
 imarray=kernelConvolve(imarray, kernel)
 image = Image.fromarray(imarray, 'RGB')
