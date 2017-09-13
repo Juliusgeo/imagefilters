@@ -4,12 +4,13 @@ import math
 import os
 from medianDeNoise import medianDeNoise
 from kernelConvolve import kernelConvolve
+
 impath="Lenna.png"
 im=Image.open(impath)
 w, h = im.size
-imarray = np.asarray(im.copy()).astype(np.uint8).reshape(h,w,3)
+#imarray = np.asarray(im.copy()).astype(np.uint8).reshape(h,w,3)
 #below is for black and white images
-#imarray = np.asarray(im.convert("L")).copy().astype(np.uint8).reshape(h,w)
+imarray = np.asarray(im.convert("L")).copy().astype(np.uint8).reshape(h,w)
 def saturationIncrease(imarray, amt, w, h):
     #python implementation of http://alienryderflex.com/saturation.html
     r =.299
@@ -29,7 +30,7 @@ def saturationIncrease(imarray, amt, w, h):
 #emboss
 kernel=np.array([[-2,-1,0],[-1,1,1],[0,1,2]])
 #blur kernel=np.array([[.0625,.125,.0625],[.125,.25,.125],[.0625,.125,.0625]])
-image = Image.fromarray(kernelConvolve(imarray, kernel), 'RGB')
+image = Image.fromarray(kernelConvolve(imarray, kernel), 'L')
 image.show()
 #image.format="PNG"
 #file, ext = os.path.splitext("Lenna.jpg")
