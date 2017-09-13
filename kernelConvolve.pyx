@@ -41,7 +41,6 @@ def kernelConvolve(array, kernel):
         for i in range(0,newarray.shape[0]):
             for n in range(0,newarray.shape[1]):
                 a=array[(i+1)-half:(i+1)+half+1,(n+1)-half:(n+1)+half+1]
-                #print(a, a[:,:,0])
                 newarray[i,n][0]=accumulate(kernel, a[:,:,0])
                 newarray[i,n][1]=accumulate(kernel, a[:,:,1])
                 newarray[i,n][2]=accumulate(kernel, a[:,:,2])

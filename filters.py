@@ -24,9 +24,11 @@ def saturationIncrease(imarray, amt, w, h):
 #image = Image.fromarray(medianDeNoise(imarray,w,h), 'RGB')
 #image = Image.fromarray(saturationIncrease(imarray,3,w,h), 'RGB')
 #image = Image.fromarray(sharpen(imarray,w,h), 'RGB')
-kernel=np.array([[-1,-1,-1],
-[-1,9,-1],
-[-1,-1,-1]])
+#sharpen kernel=np.array([[-1,-1,-1],[-1,5,-1],[-1,-1,-1]])
+#outline kernel=np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
+#emboss
+kernel=np.array([[-2,-1,0],[-1,1,1],[0,1,2]])
+#blur kernel=np.array([[.0625,.125,.0625],[.125,.25,.125],[.0625,.125,.0625]])
 image = Image.fromarray(kernelConvolve(imarray, kernel), 'RGB')
 image.show()
 #image.format="PNG"
