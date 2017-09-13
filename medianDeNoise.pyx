@@ -33,7 +33,6 @@ def medianDeNoise(np.uint8_t[:,:,:] imarray, int w, int h):
             neimat[5]=imarray[i-1,n+1,:]
             neimat[6]=imarray[i,n+1,:]
             neimat[7]=imarray[i+1,n+1,:]
-            #mean=np.mean(np.array(neimat),axis=0).astype(np.uint8)
             mean=np.asarray(fasmean(neimat)).astype(np.uint8)
             imarray[i,n,:][0]=mean[0]
             imarray[i,n,:][1]=mean[1]

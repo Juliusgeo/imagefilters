@@ -7,9 +7,8 @@ from kernelConvolve import kernelConvolve
 impath="Lenna.png"
 im=Image.open(impath)
 w, h = im.size
-#im=ImageOps.fit(im, [w//4,h//4], Image.NEAREST)
-#w, h = im.size
 imarray = np.asarray(im.copy()).astype(np.uint8).reshape(h,w,3)
+#below is for black and white images
 #imarray = np.asarray(im.convert("L")).copy().astype(np.uint8).reshape(h,w)
 def saturationIncrease(imarray, amt, w, h):
     #python implementation of http://alienryderflex.com/saturation.html
@@ -28,8 +27,7 @@ def saturationIncrease(imarray, amt, w, h):
 kernel=np.array([[-1,-1,-1],
 [-1,9,-1],
 [-1,-1,-1]])
-imarray=kernelConvolve(imarray, kernel)
-image = Image.fromarray(imarray, 'RGB')
+image = Image.fromarray(kernelConvolve(imarray, kernel), 'RGB')
 image.show()
 #image.format="PNG"
 #file, ext = os.path.splitext("Lenna.jpg")
