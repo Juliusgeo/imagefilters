@@ -1,20 +1,19 @@
 import numpy as np
 cimport numpy as np
 cimport cython
-
 def accumulate(arr1, arr2):
     arr2=arr2.astype(int)
-    accummat=np.empty(arr1.shape).astype(int)
+    accummat=np.empty(arr1.shape).astype(long)
     cdef Py_ssize_t i,n
     for i in range(0,arr1.shape[0]):
-        for n in range(0,arr1.shape[1]):
-            accummat[i,n]=arr1[i,n]*arr2[i,n]
+          for n in range(0,arr1.shape[1]):
+              accummat[i,n]=arr1[i,n]*arr2[i,n]
     cdef int sum
     sum=np.sum(accummat)
     if(sum>255):
-        sum=255
+          sum=255
     elif(sum<0):
-        sum=0
+          sum=0
     return sum
 
 def extendEdges(array,times):
@@ -35,12 +34,13 @@ def kernelConvolve(array, kernel):
     newarray=np.array(array).astype(np.uint8)
     array=extendEdges(array,half)
     cdef Py_ssize_t i,n
+    a=np.empty(kernsize).astype(np.uint16)
     if(len(newarray.shape)==2):
         for i in range(0,newarray.shape[0]):
             for n in range(0,newarray.shape[1]):
-                newarray[i,n]=accumulate(kernel, array[(i+1)-half:(i+1)+half+1,(n+1)-half:(n+1)+half+1])
+                a=array[(i+1)-half:(i+1)+half+1,(n+1)-half:(n+1)+half+1]
+                newarray[i,n]=accumulate(kernel, a)
     if(len(newarray.shape)==3):
-        a=np.empty(kernsize).astype(np.uint16)
         for i in range(0,newarray.shape[0]):
             for n in range(0,newarray.shape[1]):
                 a=array[(i+1)-half:(i+1)+half+1,(n+1)-half:(n+1)+half+1]

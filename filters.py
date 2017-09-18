@@ -24,14 +24,13 @@ def saturationIncrease(imarray, amt, w, h):
     return imarray
 #image = Image.fromarray(medianDeNoise(imarray,w,h), 'RGB')
 #image = Image.fromarray(saturationIncrease(imarray,3,w,h), 'RGB')
-#image = Image.fromarray(sharpen(imarray,w,h), 'RGB')
-#sharpen kernel=np.array([[-1,-1,-1],[-1,5,-1],[-1,-1,-1]])
+#sharpen
+kernel=np.array([[-1,-1,-1],[-1,9,-1],[-1,-1,-1]])
 #outline kernel=np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
-#emboss
-kernel=np.array([[-2,-1,0],[-1,1,1],[0,1,2]])
+#emboss kernel=np.array([[-2,-1,0],[-1,1,1],[0,1,2]])
 #blur kernel=np.array([[.0625,.125,.0625],[.125,.25,.125],[.0625,.125,.0625]])
 image = Image.fromarray(kernelConvolve(imarray, kernel), 'L')
-image.show()
+#image.show()
 #image.format="PNG"
 #file, ext = os.path.splitext("Lenna.jpg")
 #image.save(file+"filtered.png","PNG")
