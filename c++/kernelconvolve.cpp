@@ -4,8 +4,8 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 
-int accumulate(int kernel[3][3], int imslice[3][3]){
-	int sum;
+int accumulate(float kernel[3][3], float imslice[3][3]){
+	float sum;
 	for(int j=0;j<3;j++)
 	{
 		for (int i=0;i<3;i++)
@@ -20,16 +20,19 @@ int accumulate(int kernel[3][3], int imslice[3][3]){
 		return 0;
 	}
 	else{
-	return sum;}
+		return (int)sum;
+	}
 }
 
 int main()
-{	cv::Mat imarray;
-	cv::Mat colorMat = cv::imread("Lenna.png", CV_LOAD_IMAGE_UNCHANGED);
+{
+	cv::Mat imarray;
+	cv::Mat colorMat = cv::imread("lenna.png", CV_LOAD_IMAGE_UNCHANGED);
 	cv::cvtColor(colorMat, imarray, cv::COLOR_BGR2GRAY);
 	cv::Mat copy=imarray.clone();
-	int kernel[3][3]={{-1,-1,-1},{-1,8,-1},{-1,-1,-1}};
-	int imslice[3][3];
+	//float kernel[3][3]={{-1,-1,-1},{-1,8,-1},{-1,-1,-1}};
+	float kernel[3][3]={{.0625,.125,.062},{.125,.25,.125},{.062,.125,.062}};
+	float imslice[3][3];
 	for(int j=1;j<imarray.rows-1;j++)
 	{
 		for (int i=1;i<imarray.cols-1;i++)
@@ -49,7 +52,7 @@ int main()
 	//After changing
 	//cv::imshow("After",copy);
 	//cv::waitKey(2000);
-	cv::imwrite( "Lenna2.png", copy );
+	cv::imwrite("out.jpg", copy );
 	//imarray.release();
 	//copy.release();
   	return 0;
