@@ -11,3 +11,5 @@ Includes:
 
 To run, install numpy and Cython and then 
 ```bash run.sh```
+
+To run the C++ folder code, type ```cd C++``` then ```bash build.sh```
